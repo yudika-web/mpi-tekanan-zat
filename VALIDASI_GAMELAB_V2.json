@@ -1,0 +1,35 @@
+{
+  "app.js": {
+    "ok": true,
+    "error": ""
+  },
+  "game-lab-v2.js": {
+    "ok": true,
+    "error": ""
+  },
+  "config.js": {
+    "ok": true,
+    "error": ""
+  },
+  "config.js_unchanged": true,
+  "apps-script/Code.gs_unchanged": true,
+  "evaluation_block_unchanged": true,
+  "evaluation_sha256": "a8a8d106d1b4067668d1c7a38677e76a309b1045e0390c5b9c2f646f0b10c087",
+  "game_assets_count": 20,
+  "game_assets_over_500KB": [],
+  "index_loads_game_css": true,
+  "index_loads_game_js": true,
+  "module_shell_smoke": {
+    "len": 2323,
+    "games": [
+      "ground",
+      "hydraulic",
+      "gas",
+      "hydro",
+      "submarine"
+    ],
+    "hasTabs": true,
+    "hasHost": true
+  },
+  "browser_e2e_note": "Container Chromium is organization-blocked from localhost, file://, and data: URLs, so browser interaction QA could not be executed here. Node syntax, module smoke, asset, and protected-code regression checks passed."
+}
