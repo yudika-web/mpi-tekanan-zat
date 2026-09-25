@@ -3,9 +3,18 @@
  * Google Sheet opsional: set Script Property SPREADSHEET_ID.
  */
 const SHEET_NAME = 'Hasil Evaluasi';
+const DEFAULT_SPREADSHEET_ID = '1pqibLaA7AsCX-oeYz-vE-0OoxWEYFRnL1MfOZY63sSA';
 
 function doGet(e) {
-  return json_({ok:true, service:'MPI Misi Tekanan API', version:'3.0', storageConfigured:Boolean(getSpreadsheetId_())});
+  const status = checkSpreadsheet_();
+  return json_({
+    ok: true,
+    service: 'MPI Misi Tekanan API',
+    version: '3.1',
+    storageConfigured: Boolean(getSpreadsheetId_()),
+    spreadsheetReachable: status.ok,
+    storageMessage: status.message
+  });
 }
 
 function doPost(e) {
@@ -55,7 +64,33 @@ function saveCompletion_(data) {
   } finally { lock.releaseLock(); }
 }
 
-function getSpreadsheetId_(){return PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID')||''}
+
+function testSpreadsheetConnection() {
+  return checkSpreadsheet_();
+}
+
+function checkSpreadsheet_() {
+  try {
+    const id = getSpreadsheetId_();
+    if (!id) return {ok:false, message:'Spreadsheet ID belum dikonfigurasi.'};
+
+    const ss = SpreadsheetApp.openById(id);
+    const testName = '_MPI_SYSTEM_CHECK';
+    let sh = ss.getSheetByName(testName);
+    if (!sh) sh = ss.insertSheet(testName);
+
+    sh.getRange('A1').setValue('MPI backend connected');
+    sh.getRange('B1').setValue(new Date());
+
+    return {ok:true, message:'Spreadsheet dapat dibuka dan ditulis.'};
+  } catch (err) {
+    return {ok:false, message:String(err && err.message ? err.message : err)};
+  }
+}
+
+function getSpreadsheetId_() {
+  return PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID') || DEFAULT_SPREADSHEET_ID;
+}
 function getOrCreateSheet_(ss,name,headers){
   let sh=ss.getSheetByName(name);if(!sh)sh=ss.insertSheet(name);
   if(sh.getLastRow()===0){sh.getRange(1,1,1,headers.length).setValues([headers]);sh.getRange(1,1,1,headers.length).setFontWeight('bold');sh.setFrozenRows(1)}
