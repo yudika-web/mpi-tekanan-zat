@@ -1,0 +1,13 @@
+{
+  "app_js_syntax_ok": true,
+  "app_js_error": "",
+  "config_js_syntax_ok": true,
+  "config_js_error": "",
+  "code_gs_syntax_ok": true,
+  "code_gs_error": "",
+  "spreadsheet_id_embedded": true,
+  "sendResults_true": true,
+  "testSpreadsheetConnection_present": true,
+  "app_js_present": true,
+  "live_remote_test": "requires deployed Apps Script execution"
+}

@@ -33,3 +33,25 @@ window.MPI_CONFIG = {
 };
 
 Catatan: dua soal terakhir adalah **PISA-style**, bukan soal resmi OECD PISA.
+
+
+## Spreadsheet untuk v3.1
+Spreadsheet ID default sudah ditanam pada `Code.gs`.
+Script Property `SPREADSHEET_ID` tetap dapat dipakai sebagai override.
+
+### Uji koneksi
+1. Jalankan fungsi `testSpreadsheetConnection()` dari editor Apps Script.
+2. Izinkan akses Spreadsheet bila diminta.
+3. Hasil yang diharapkan: `ok: true`.
+4. Akan dibuat sheet `_MPI_SYSTEM_CHECK`.
+5. Deploy ulang sebagai **New version**.
+6. Buka URL `/exec`; pastikan `spreadsheetReachable: true`.
+
+Frontend `config.js` sudah diset `sendResults: true`.
+
+
+## Deployment aktif v3.1.1
+Frontend pada paket ini sudah diarahkan ke Web App berikut:
+`https://script.google.com/macros/s/AKfycbyT8Km3BCnE7EtrtPBZ6ItBXxkDNIEJxetFmUYf1dcgaCg9I7_4wHEwTb8Qrugv3ivP4Q/exec`
+
+`sendResults` sudah `true`.

@@ -2,7 +2,7 @@
 // Isi appsScriptUrl setelah Web App Apps Script dideploy.
 // Jika kosong, MPI tetap berfungsi penuh secara lokal tanpa sinkronisasi cloud.
 window.MPI_CONFIG = {
-  appsScriptUrl: "https://script.google.com/macros/s/AKfycbxn1u5WxuEN-0tCNxXM0t0u0MITzBlBBl8xTSCdU_xyG2KctqhxAM5JjiUMwxKxvtAgvQ/exec",
-  sendResults: false,
-  appVersion: "3.0-github-appsscript"
+  appsScriptUrl: "https://script.google.com/macros/s/AKfycbyT8Km3BCnE7EtrtPBZ6ItBXxkDNIEJxetFmUYf1dcgaCg9I7_4wHEwTb8Qrugv3ivP4Q/exec",
+  sendResults: true,
+  appVersion: "3.1.1-github-appsscript"
 };
