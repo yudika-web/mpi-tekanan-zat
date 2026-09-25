@@ -1,0 +1,119 @@
+{
+  "checks": [
+    {
+      "check": "Opening loads",
+      "status": "PASS"
+    },
+    {
+      "check": "Mascot opening",
+      "status": "PASS"
+    },
+    {
+      "check": "Mascot sidebar",
+      "status": "PASS"
+    },
+    {
+      "check": "Aperception unlock",
+      "status": "PASS"
+    },
+    {
+      "check": "Opening → Objectives",
+      "status": "PASS"
+    },
+    {
+      "check": "Objectives → Materials",
+      "status": "PASS"
+    },
+    {
+      "check": "8 topik selesai tanpa macet",
+      "status": "PASS"
+    },
+    {
+      "check": "6 misi selesai tanpa macet",
+      "status": "PASS"
+    },
+    {
+      "check": "Missions → Evaluasi",
+      "status": "PASS"
+    },
+    {
+      "check": "12 soal + feedback selesai",
+      "status": "PASS"
+    },
+    {
+      "check": "Evaluasi → Games",
+      "status": "PASS"
+    },
+    {
+      "check": "5 tab game dan kontrol berfungsi",
+      "status": "PASS"
+    },
+    {
+      "check": "Games → Mission Complete",
+      "status": "PASS"
+    },
+    {
+      "check": "Mascot success on final",
+      "status": "PASS"
+    },
+    {
+      "check": "Final screen persistent after render/refresh state",
+      "status": "PASS"
+    },
+    {
+      "check": "HP portrait / landscape / laptop tanpa overflow horizontal",
+      "status": "PASS"
+    },
+    {
+      "check": "Games compatible in landscape",
+      "status": "PASS"
+    }
+  ],
+  "responsive": [
+    {
+      "profile": "hp_portrait",
+      "viewport": "390x844",
+      "horizontal_overflow_px": 0,
+      "min_button_height_px": 44,
+      "sidebar_transform": "matrix(1, 0, 0, 1, -304.5, 0)",
+      "main_width_px": 390
+    },
+    {
+      "profile": "hp_landscape",
+      "viewport": "844x390",
+      "horizontal_overflow_px": 0,
+      "min_button_height_px": 44,
+      "sidebar_transform": "matrix(1, 0, 0, 1, -304.5, 0)",
+      "main_width_px": 844
+    },
+    {
+      "profile": "laptop",
+      "viewport": "1366x768",
+      "horizontal_overflow_px": -15,
+      "min_button_height_px": 44,
+      "sidebar_transform": "none",
+      "main_width_px": 1061
+    }
+  ],
+  "runtime_error_events": 0,
+  "final_state": {
+    "unlocked": 6,
+    "completed": [
+      "opening",
+      "objectives",
+      "materials",
+      "missions",
+      "quiz",
+      "games"
+    ],
+    "missions": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "quizScore": 100
+  }
+}

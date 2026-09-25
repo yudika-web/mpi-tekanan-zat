@@ -1,0 +1,13 @@
+{
+  "js_syntax_ok": true,
+  "missing_image_assets": [],
+  "images_over_500KB": [],
+  "onclick_handlers_checked": 25,
+  "missing_onclick_handlers": [],
+  "mascot_assets": [
+    "maskot_subi_berpikir.webp",
+    "maskot_subi_normal.webp",
+    "maskot_subi_peringatan.webp",
+    "maskot_subi_sukses.webp"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "javascript_syntax_ok": true,
+  "javascript_error": "",
+  "quiz_counts": {
+    "total": 15,
+    "LOTS/MOTS": 10,
+    "HOTS": 3,
+    "PISA": 2
+  },
+  "missing_assets": [],
+  "images_over_500KB": [],
+  "github_ready": true,
+  "apps_script_ready": true,
+  "completion_sync_function_present": true,
+  "evaluation_sync_function_present": true
+}
