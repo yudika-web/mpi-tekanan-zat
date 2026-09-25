@@ -1,0 +1,29 @@
+{
+  "version": "3.3.1-mobile-portrait",
+  "target_viewports": [
+    "390x844",
+    "360x800",
+    "320x568"
+  ],
+  "files_modified": [
+    "styles.css",
+    "game-lab-v2.css",
+    "README.md"
+  ],
+  "protected_files": {
+    "app.js_unchanged": true,
+    "config.js_unchanged": true,
+    "Code.gs_unchanged": true,
+    "game-lab-v2.js_unchanged": true
+  },
+  "touch_target_goal_px": "44-46",
+  "portrait_breakpoints": [
+    "390px",
+    "360px",
+    "330px"
+  ],
+  "game_lab_breakpoints": [
+    "390px",
+    "350px"
+  ]
+}

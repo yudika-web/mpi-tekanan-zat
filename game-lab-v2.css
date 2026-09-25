@@ -20,3 +20,113 @@
 @media(max-width:980px){.gl-overview-grid{grid-template-columns:repeat(3,1fr)}.gl-game-head{grid-template-columns:1fr}.gl-lab-grid{grid-template-columns:1fr}.gl-scene{min-height:340px}.sub-scene{min-height:390px}}
 @media(max-width:620px){.gl-overview-grid{grid-template-columns:1fr 1fr}.gl-summary-card{min-height:78px}.gl-levels{grid-template-columns:1fr}.gl-control-row{grid-template-columns:95px 1fr 75px}.gl-readouts{grid-template-columns:1fr 1fr}.gl-scene{min-height:290px}.hydro-scene{min-height:360px}.sub-scene{min-height:370px}.hydro-scene svg{width:150px;height:105px}.hy-car{width:190px}.gl-tabs{overflow:auto;flex-wrap:nowrap}.gl-tabs button{white-space:nowrap;min-width:max-content}}
 @media(max-width:900px) and (orientation:landscape){.gl-lab-grid{grid-template-columns:.92fr 1.08fr}.gl-scene{min-height:300px}.sub-scene{min-height:330px}.gl-panel{padding:12px}.gl-readouts{grid-template-columns:repeat(3,1fr)}}
+
+
+/* ===== v3.3.1 Mobile Portrait Game Lab ===== */
+@media (max-width: 390px) and (orientation: portrait){
+  .gl-host{min-height:0}
+  .gl-game-head{grid-template-columns:1fr;gap:9px;margin-bottom:10px}
+  .gl-game-head h2{font-size:21px;line-height:1.18}
+  .gl-game-head p{font-size:13px}
+  .gl-mini-note{font-size:10px;padding:9px}
+  .gl-tabs{
+    display:flex;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    gap:7px;
+    padding:3px 2px 9px;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin
+  }
+  .gl-tabs button{
+    min-width:max-content;
+    min-height:46px;
+    white-space:nowrap;
+    scroll-snap-align:start;
+    padding:9px 12px
+  }
+  .gl-tabs::after{
+    content:"Geser →";
+    position:sticky;
+    right:0;
+    align-self:stretch;
+    display:grid;
+    place-items:center;
+    min-width:58px;
+    padding:0 7px;
+    border-radius:10px;
+    background:linear-gradient(90deg,#f6fafdcc,#f6fafd 35%);
+    color:#64748b;
+    font-size:10px;
+    font-weight:800;
+    pointer-events:none
+  }
+  .gl-overview-grid{grid-template-columns:1fr}
+  .gl-summary-card{min-height:68px;padding:10px}
+  .gl-levels{grid-template-columns:1fr;gap:7px}
+  .gl-levels button{min-height:54px;padding:9px 10px}
+  .gl-predict{padding:10px 11px}
+  .gl-predict-options{display:grid;grid-template-columns:1fr;gap:7px}
+  .gl-predict-options button{min-height:46px;width:100%;text-align:left}
+  .gl-lab-grid{grid-template-columns:1fr;gap:10px}
+  .gl-panel{padding:12px;border-radius:16px}
+  .gl-panel h3{font-size:18px}
+  .gl-control-row{
+    grid-template-columns:1fr 78px;
+    gap:5px 8px;
+    margin:9px 0
+  }
+  .gl-control-row label{
+    grid-column:1/-1;
+    font-size:12px
+  }
+  .gl-control-row input[type=range],
+  .gl-control-row select{min-width:0;width:100%}
+  .gl-control-row select{grid-column:1/-1;min-height:46px}
+  .gl-control-row output{font-size:11px;padding:7px 5px}
+  .gl-readouts{grid-template-columns:1fr 1fr;gap:6px}
+  .gl-readouts>div{padding:8px}
+  .gl-readouts b{font-size:15px}
+  .gl-scene{
+    min-height:250px;
+    border-radius:16px;
+    order:-1
+  }
+  .ground-scene{min-height:245px}
+  .gl-vehicle{width:min(44%,210px);bottom:55px}
+  .hydraulic-scene{min-height:270px}
+  .hy-small{left:14%;width:64px;height:145px}
+  .hy-big{right:10%;width:105px;height:160px}
+  .hy-car{width:155px;top:-70px}
+  .hy-pipe{left:20%;right:16%;bottom:60px}
+  .hy-small,.hy-big{bottom:61px}
+  .gas-scene{min-height:245px}
+  .gas-scene canvas{min-height:245px}
+  .gl-segment{display:grid;grid-template-columns:1fr}
+  .gl-segment button{min-height:46px}
+  .hydro-scene{min-height:315px}
+  .hydro-gauge{width:70px;height:70px;right:10px;top:10px;border-width:6px}
+  .hydro-gauge b{font-size:15px}
+  .hydro-needle{height:28px;bottom:35px;left:33px}
+  .hydro-scene svg{width:130px;height:90px;right:8px;bottom:28px}
+  .hydro-sensor{width:44px;height:44px}
+  .sub-scene{min-height:320px}
+  .sub-sprite{width:min(58%,230px)}
+  .sub-capsule{width:44px;height:52px;left:76%}
+  .gl-sub-controls{grid-template-columns:1fr}
+  .gl-sub-controls button:last-child{grid-column:auto}
+  .gl-sub-controls button{min-height:48px}
+  .gl-data-mini{max-height:135px}
+  .gl-reflection textarea{min-height:100px}
+}
+
+@media (max-width: 350px) and (orientation: portrait){
+  .gl-readouts{grid-template-columns:1fr}
+  .gl-control-row{grid-template-columns:1fr}
+  .gl-control-row output{justify-self:start;min-width:74px}
+  .gl-tabs::after{min-width:48px;font-size:9px}
+  .gl-scene{min-height:235px}
+  .hydro-scene{min-height:295px}
+  .sub-scene{min-height:300px}
+}

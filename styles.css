@@ -116,3 +116,87 @@ img{image-rendering:auto}
   .settings-dialog{padding:16px;border-radius:18px}
   .settings-actions .btn{flex:1}
 }
+
+
+/* ===== v3.3.1 Mobile Portrait Optimization ===== */
+@media (max-width: 390px) and (orientation: portrait){
+  :root{--top:62px}
+  .topbar{padding:8px 10px;gap:6px}
+  .hamburger,.settings-btn{width:44px;height:44px;min-width:44px;min-height:44px;border-radius:12px}
+  .brand{margin-left:4px;min-width:0;max-width:132px}
+  .brand small{font-size:8px;letter-spacing:.08em;white-space:nowrap}
+  .brand strong{font-size:14px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .header-progress{gap:5px;min-width:0}
+  .header-progress span{font-size:11px;min-width:30px;text-align:right}
+  .header-progress div{width:46px}
+  #sidebar{top:var(--top);width:min(88vw,300px)}
+  .page{padding:16px 12px 58px}
+  .section-head{margin-bottom:14px}
+  .section-head h1{font-size:29px;line-height:1.12}
+  .section-head p{font-size:14px;line-height:1.55}
+  .card{padding:15px;border-radius:18px}
+  .hero-grid{gap:18px}
+  .hero h1{font-size:36px}
+  .hero p{font-size:15px;line-height:1.55}
+  .sonar{width:210px;height:210px}
+  .subi-hero{width:165px;max-height:165px}
+  .form-grid{grid-template-columns:1fr}
+  .btn,.scenario-options button,.detail-tabs button,.game-tabs button,.topic-btn,.order-item button{
+    min-height:46px
+  }
+  .btn{padding:11px 13px}
+  .scenario-options{display:grid;grid-template-columns:1fr}
+  .scenario-options button{width:100%;text-align:left}
+  .topic-list{gap:6px;padding-bottom:3px}
+  .topic-btn{padding:9px 11px}
+  .topic-copy{padding:15px}
+  .topic-visual{padding:12px}
+  .topic-visual img{max-height:240px}
+  .detail-tabs{padding:12px 14px 0;display:grid;grid-template-columns:1fr 1fr}
+  .detail-tabs button{width:100%}
+  .detail-panel{padding:15px}
+  .worked{grid-template-columns:1fr}
+  .worked .answer{white-space:normal}
+  .formula{font-size:19px}
+  .missions{grid-template-columns:1fr}
+  .mission img{height:135px}
+  .sim{grid-template-columns:1fr}
+  .sim-visual{min-height:240px}
+  .sim-visual img{max-height:220px}
+  .range{grid-template-columns:1fr 78px;gap:5px 8px}
+  .range label{grid-column:1/-1}
+  .range input{min-width:0}
+  .range output{font-size:11px}
+  .readouts{grid-template-columns:1fr 1fr}
+  .readouts div:last-child:nth-child(odd){grid-column:1/-1}
+  .quiz-card{padding:16px}
+  .quiz-card h2{font-size:18px}
+  .quiz-img{max-height:230px}
+  .match{grid-template-columns:1fr}
+  .tf-row{grid-template-columns:1fr}
+  .score{font-size:62px}
+  .score-groups{grid-template-columns:1fr}
+  .score-groups div:last-child{grid-column:auto}
+  .mastery-row{grid-template-columns:100px 1fr 38px}
+  .settings-dialog{max-height:calc(100vh - 24px);overflow:auto}
+  .settings-actions{display:grid;grid-template-columns:1fr}
+  .settings-actions .btn{width:100%}
+}
+
+@media (max-width: 360px) and (orientation: portrait){
+  .brand small{display:none}
+  .brand{max-width:110px}
+  .header-progress div{display:none}
+  .header-progress span{font-size:10px}
+  .settings-btn{margin-left:2px}
+  .page{padding-left:10px;padding-right:10px}
+}
+
+@media (max-width: 330px) and (orientation: portrait){
+  .brand{max-width:88px}
+  .brand strong{font-size:13px}
+  .header-progress span{display:none}
+  .sonar{width:190px;height:190px}
+  .subi-hero{width:145px}
+  .section-head h1{font-size:26px}
+}
