@@ -23,6 +23,131 @@ function updateNav(){
 }
 document.getElementById('menuToggle').onclick=()=>document.getElementById('sidebar').classList.toggle('open');
 
+// ===== v3.3 Background Music Controller =====
+const MUSIC_PREF_KEY='mpiTekananMusicPrefs';
+const MUSIC_DEFAULT={enabled:true,volume:28};
+let musicPrefs=loadMusicPrefs();
+let musicUnlocked=false;
+
+function loadMusicPrefs(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(MUSIC_PREF_KEY)||'{}');
+    return {
+      enabled:typeof saved.enabled==='boolean'?saved.enabled:MUSIC_DEFAULT.enabled,
+      volume:Number.isFinite(+saved.volume)?Math.max(0,Math.min(100,+saved.volume)):MUSIC_DEFAULT.volume
+    };
+  }catch(e){return {...MUSIC_DEFAULT}}
+}
+function saveMusicPrefs(){
+  try{localStorage.setItem(MUSIC_PREF_KEY,JSON.stringify(musicPrefs))}catch(e){}
+}
+function bgmEl(){return document.getElementById('bgm')}
+function updateMusicUI(){
+  const enabled=document.getElementById('bgmEnabled');
+  const volume=document.getElementById('bgmVolume');
+  const out=document.getElementById('bgmVolumeOut');
+  const btn=document.getElementById('settingsBtn');
+  if(enabled)enabled.checked=musicPrefs.enabled;
+  if(volume)volume.value=musicPrefs.volume;
+  if(out)out.textContent=Math.round(musicPrefs.volume)+'%';
+  if(btn){
+    btn.textContent=musicPrefs.enabled&&musicPrefs.volume>0?'♫':'🔇';
+    btn.classList.toggle('muted',!musicPrefs.enabled||musicPrefs.volume===0);
+  }
+}
+function updateMusicStatus(message){
+  const e=document.getElementById('musicStatus');
+  if(e)e.textContent=message;
+}
+function applyMusicPrefs(tryPlay=false){
+  const audio=bgmEl();
+  if(!audio)return;
+  audio.volume=Math.max(0,Math.min(1,musicPrefs.volume/100));
+  if(!musicPrefs.enabled||musicPrefs.volume===0){
+    audio.pause();
+    updateMusicStatus('Musik latar dimatikan.');
+  }else if(tryPlay&&musicUnlocked){
+    const p=audio.play();
+    if(p&&typeof p.then==='function'){
+      p.then(()=>updateMusicStatus('Musik latar sedang diputar.'))
+       .catch(()=>updateMusicStatus('Tekan “Coba musik” untuk memulai audio pada browser ini.'));
+    }
+  }else if(audio.paused){
+    updateMusicStatus('Musik siap dan akan mulai setelah interaksi pengguna.');
+  }
+  updateMusicUI();
+}
+function unlockMusic(){
+  if(musicUnlocked)return;
+  musicUnlocked=true;
+  applyMusicPrefs(true);
+}
+function openSettings(){
+  const overlay=document.getElementById('settingsOverlay');
+  if(!overlay)return;
+  overlay.hidden=false;
+  updateMusicUI();
+  applyMusicPrefs(false);
+  setTimeout(()=>document.getElementById('bgmEnabled')?.focus(),0);
+}
+function closeSettings(){
+  const overlay=document.getElementById('settingsOverlay');
+  if(overlay)overlay.hidden=true;
+  document.getElementById('settingsBtn')?.focus();
+}
+window.openSettings=openSettings;
+
+document.getElementById('settingsBtn')?.addEventListener('click',()=>{
+  musicUnlocked=true;
+  openSettings();
+});
+document.getElementById('settingsClose')?.addEventListener('click',closeSettings);
+document.getElementById('settingsDone')?.addEventListener('click',closeSettings);
+document.getElementById('settingsOverlay')?.addEventListener('click',e=>{
+  if(e.target===e.currentTarget)closeSettings();
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!document.getElementById('settingsOverlay')?.hidden)closeSettings();
+});
+document.getElementById('bgmEnabled')?.addEventListener('change',e=>{
+  musicPrefs.enabled=e.target.checked;
+  saveMusicPrefs();
+  musicUnlocked=true;
+  applyMusicPrefs(true);
+});
+document.getElementById('bgmVolume')?.addEventListener('input',e=>{
+  musicPrefs.volume=Math.max(0,Math.min(100,+e.target.value));
+  saveMusicPrefs();
+  const audio=bgmEl();
+  if(audio)audio.volume=musicPrefs.volume/100;
+  if(musicPrefs.volume>0&&musicPrefs.enabled&&musicUnlocked&&audio?.paused){
+    audio.play().catch(()=>{});
+  }
+  updateMusicUI();
+  updateMusicStatus(musicPrefs.volume===0?'Volume musik 0% (hening).':`Volume musik ${Math.round(musicPrefs.volume)}%.`);
+});
+document.getElementById('bgmTestBtn')?.addEventListener('click',()=>{
+  musicUnlocked=true;
+  if(!musicPrefs.enabled){
+    musicPrefs.enabled=true;
+    saveMusicPrefs();
+  }
+  applyMusicPrefs(true);
+});
+document.addEventListener('pointerdown',unlockMusic,{once:true,capture:true});
+document.addEventListener('keydown',unlockMusic,{once:true,capture:true});
+document.addEventListener('visibilitychange',()=>{
+  const audio=bgmEl();
+  if(!audio)return;
+  if(document.hidden){
+    audio.pause();
+  }else if(musicPrefs.enabled&&musicPrefs.volume>0&&musicUnlocked){
+    audio.play().catch(()=>{});
+  }
+});
+applyMusicPrefs(false);
+
+
 const topics=[
 {id:'solid',title:'Tekanan Zat Padat',img:'solid_context.webp',chips:['Gaya','Luas bidang tekan','Pascal'],formula:'p = F / A',phenomenon:'Mengapa sepatu hak tinggi lebih mudah meninggalkan bekas pada tanah lunak, sedangkan ban traktor dibuat lebar?',concept:'Tekanan menunjukkan seberapa besar gaya bekerja pada setiap satuan luas. Pada gaya yang sama, luas kontak yang lebih kecil membuat gaya terkonsentrasi pada area lebih kecil sehingga tekanannya lebih besar.',context:'Di sekolah kamu bisa membandingkan kaki kursi, ujung pensil, sepatu olahraga, dan sepatu berhak. Pada kendaraan berat, memperlebar ban atau menambah jumlah roda membantu memperbesar luas kontak sehingga tekanan pada tanah berkurang.',worked:'Sebuah peti menekan lantai dengan gaya 600 N dan luas alas 0,03 m². Tekanan = 600 / 0,03 = 20.000 Pa.',q:'Dua balok mendapat gaya tekan sama. Balok A menyentuh meja dengan luas lebih kecil. Balok mana memberi tekanan lebih besar?',opts:['Balok A','Balok B','Sama'],ans:0,feedback:'Karena F sama, p berbanding terbalik dengan A. Luas lebih kecil menghasilkan tekanan lebih besar.',extra:'solid_blocks.webp',focus:'Bandingkan gaya sama dengan luas kontak berbeda.'},
 {id:'hydro',title:'Tekanan Hidrostatis',img:'hydro_dam.webp',chips:['Kedalaman h','Massa jenis ρ','Gravitasi g'],formula:'p = ρ g h',phenomenon:'Mengapa telinga penyelam terasa makin tertekan saat turun lebih dalam dan mengapa bendungan lebih tebal di bagian bawah?',concept:'Setiap lapisan cairan menahan berat cairan di atasnya. Semakin dalam suatu titik, semakin banyak kolom cairan di atas titik itu, sehingga tekanan hidrostatis semakin besar. Tekanan juga bertambah jika massa jenis cairan lebih besar.',context:'Konsep ini penting untuk desain bendungan, tangki air, kapal selam, penyelaman, dan pemasangan saluran air. Pada wadah dengan bentuk berbeda, tekanan pada kedalaman yang sama tetap ditentukan oleh ρ, g, dan h.',worked:'Pada air (ρ ≈ 1.000 kg/m³), titik sedalam 5 m dengan g ≈ 10 m/s² memiliki p = 1.000 × 10 × 5 = 50.000 Pa.',q:'Pada cairan yang sama, titik P berada 2 m dan Q 6 m di bawah permukaan. Tekanan hidrostatis terbesar berada di ...',opts:['P','Q','Sama'],ans:1,feedback:'Q lebih dalam. Pada ρ dan g yang sama, p = ρgh bertambah ketika h bertambah.',extra:'hydro_diver.webp',focus:'Kedalaman bertambah → tekanan hidrostatis bertambah.'},

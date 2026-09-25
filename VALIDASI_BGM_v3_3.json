@@ -1,0 +1,29 @@
+{
+  "version": "3.3-bgm",
+  "bgm_file": "assets/audio/deep-currents.mp3",
+  "bgm_size_mb": 2.65,
+  "bgm_duration_seconds": 119.974,
+  "default_volume_percent": 28,
+  "settings_ui_added": true,
+  "music_on_off_added": true,
+  "volume_slider_added": true,
+  "autoplay_policy_handled": true,
+  "syntax": {
+    "app.js": {
+      "ok": true,
+      "error": ""
+    },
+    "config.js": {
+      "ok": true,
+      "error": ""
+    },
+    "game-lab-v2.js": {
+      "ok": true,
+      "error": ""
+    }
+  },
+  "protected_quiz_backend_block_unchanged": true,
+  "config_js_unchanged": true,
+  "code_gs_unchanged": true,
+  "game_lab_js_unchanged": true
+}
